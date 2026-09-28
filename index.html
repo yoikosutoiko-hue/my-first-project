@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>むしょくの日記</title>
+  <style>
+    :root {
+      --bg: #fafaf7;
+      --surface: #ffffff;
+      --text: #2b2b2b;
+      --muted: #777777;
+      --accent: #4a7c59;
+      --border: #e6e6e1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1c1c;
+        --surface: #252525;
+        --text: #e8e8e8;
+        --muted: #a0a0a0;
+        --accent: #8cc49b;
+        --border: #3a3a3a;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
+      font-size: 17px;
+      line-height: 1.9;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 32px 0 24px;
+    }
+
+    .site-title {
+      margin: 0;
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+    }
+
+    .site-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    main {
+      padding: 32px 0 48px;
+    }
+
+    article {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 24px;
+    }
+
+    .post-title {
+      margin: 0 0 4px;
+      font-size: 1.4rem;
+      line-height: 1.5;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    .post-date {
+      display: block;
+      margin: 0 0 20px 16px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .post-body p {
+      margin: 0 0 1em;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 0 32px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 16px;
+      }
+
+      header {
+        padding: 24px 0 16px;
+      }
+
+      .site-title {
+        font-size: 1.35rem;
+      }
+
+      main {
+        padding: 20px 0 32px;
+      }
+
+      article {
+        padding: 20px 16px;
+      }
+
+      .post-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="site-title"><a href="./">むしょくの日記</a></h1>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <article>
+        <h2 class="post-title">はじめての投稿</h2>
+        <time class="post-date" datetime="2026-09-27">2026年9月27日</time>
+        <div class="post-body">
+          <p>ブログをはじめました。よろしくお願いします。</p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 むしょくの日記
+    </div>
+  </footer>
+</body>
+</html>
