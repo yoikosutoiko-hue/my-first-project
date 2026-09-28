@@ -6,26 +6,34 @@
   <title>無色入門</title>
   <style>
     :root {
-      --bg: #fafaf7;
+      --bg: #f4f5f2;
       --surface: #ffffff;
-      --text: #2b2b2b;
-      --muted: #777777;
-      --accent: #4a7c59;
-      --border: #e6e6e1;
-      --quote-bg: #f3f3ee;
-      --did-bg: #eef5f0;
+      --text: #26302c;
+      --heading: #16201c;
+      --muted: #6f7a75;
+      --accent: #2f7a64;
+      --accent-strong: #1f5c4a;
+      --accent-soft: #e7f2ee;
+      --on-accent: #ffffff;
+      --border: #e3e7e4;
+      --quote-bg: #f5f7f6;
+      --shadow: 0 1px 2px rgba(22, 32, 28, 0.04), 0 8px 24px rgba(22, 32, 28, 0.06);
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #1c1c1c;
-        --surface: #252525;
-        --text: #e8e8e8;
-        --muted: #a0a0a0;
-        --accent: #8cc49b;
-        --border: #3a3a3a;
-        --quote-bg: #2e2e2e;
-        --did-bg: #263229;
+        --bg: #141816;
+        --surface: #1d2320;
+        --text: #dde4e0;
+        --heading: #f2f6f4;
+        --muted: #95a39c;
+        --accent: #6cc3a6;
+        --accent-strong: #1f5c4a;
+        --accent-soft: #22322c;
+        --on-accent: #ffffff;
+        --border: #2d3531;
+        --quote-bg: #232a27;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
       }
     }
 
@@ -38,98 +46,162 @@
       background: var(--bg);
       color: var(--text);
       font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
-      font-size: 17px;
-      line-height: 1.9;
+      font-size: 16.5px;
+      line-height: 1.95;
+      letter-spacing: 0.02em;
       -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 0 20px;
     }
 
-    header {
-      border-bottom: 1px solid var(--border);
-      padding: 32px 0 24px;
+    /* ヘッダー */
+    .site-header {
+      background: linear-gradient(135deg, var(--accent-strong) 0%, #2f7a64 60%, #3f9478 100%);
+      color: var(--on-accent);
+      padding: 56px 0 88px;
     }
 
     .site-title {
       margin: 0;
-      font-size: 1.6rem;
-      letter-spacing: 0.05em;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      line-height: 1.3;
     }
 
     .site-title a {
-      color: var(--text);
+      color: inherit;
       text-decoration: none;
     }
 
+    .site-tagline {
+      margin: 8px 0 0;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    /* 記事一覧 */
     main {
-      padding: 32px 0 48px;
+      margin-top: -56px;
+      padding-bottom: 64px;
     }
 
     article {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 28px 24px;
-    }
-
-    .post-title {
-      margin: 0 0 4px;
-      font-size: 1.4rem;
-      line-height: 1.5;
-      border-left: 4px solid var(--accent);
-      padding-left: 12px;
-    }
-
-    .post-date {
-      display: block;
-      margin: 0 0 20px 16px;
-      color: var(--muted);
-      font-size: 0.85rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 44px 48px;
     }
 
     article + article {
-      margin-top: 32px;
+      margin-top: 28px;
+    }
+
+    .post-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .post-date::before {
+      content: "";
+      width: 18px;
+      height: 2px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+
+    .post-title {
+      margin: 0 0 28px;
+      color: var(--heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.55;
+      letter-spacing: 0.03em;
+    }
+
+    /* 本文 */
+    .post-body > :last-child {
+      margin-bottom: 0;
     }
 
     .post-body p {
-      margin: 0 0 1em;
+      margin: 0 0 1.2em;
     }
 
     .post-body h3 {
-      margin: 2em 0 0.8em;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--border);
-      font-size: 1.15rem;
-      line-height: 1.5;
+      position: relative;
+      margin: 2.6em 0 1em;
+      padding-left: 16px;
+      color: var(--heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .post-body h3:first-child {
+      margin-top: 0;
+    }
+
+    .post-body h3::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.2em;
+      bottom: 0.2em;
+      width: 4px;
+      border-radius: 4px;
+      background: var(--accent);
     }
 
     .post-body ul {
-      margin: 0 0 1em;
-      padding-left: 1.4em;
+      margin: 0 0 1.2em;
+      padding-left: 1.3em;
     }
 
     .post-body li {
-      margin-bottom: 0.4em;
+      margin-bottom: 0.5em;
+    }
+
+    .post-body li::marker {
+      color: var(--accent);
     }
 
     .post-body strong {
       font-weight: 700;
+      background: linear-gradient(transparent 62%, var(--accent-soft) 62%);
     }
 
     .post-body a {
       color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .post-body a:hover {
+      text-decoration-thickness: 2px;
     }
 
     .post-body blockquote {
-      margin: 0 0 1em;
-      padding: 12px 16px;
+      margin: 0 0 1.2em;
+      padding: 16px 20px;
       background: var(--quote-bg);
-      border-left: 4px solid var(--border);
-      border-radius: 4px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
     }
 
     .post-body blockquote p:last-child {
@@ -137,47 +209,66 @@
     }
 
     .post-body .did {
-      margin: 0 0 1em;
-      padding: 12px 16px;
-      background: var(--did-bg);
-      border-radius: 6px;
+      margin: 0 0 1.2em;
+      padding: 16px 20px;
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      border-radius: 4px 10px 10px 4px;
+      font-size: 0.95rem;
     }
 
     .post-body .did-label {
       display: block;
+      margin-bottom: 2px;
       color: var(--accent);
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
     }
 
     .post-body .note {
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 0.88rem;
+      line-height: 1.85;
     }
 
+    .post-body .note strong {
+      background: none;
+    }
+
+    /* 表 */
     .table-wrap {
-      margin: 0 0 1em;
+      margin: 0 0 1.2em;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border);
+      border-radius: 10px;
     }
 
     .post-body table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.92rem;
-      line-height: 1.6;
+      font-size: 0.9rem;
+      line-height: 1.65;
     }
 
     .post-body th,
     .post-body td {
-      padding: 8px 10px;
-      border: 1px solid var(--border);
+      padding: 10px 14px;
       text-align: left;
       vertical-align: top;
     }
 
     .post-body th {
-      background: var(--did-bg);
+      background: var(--accent-soft);
+      color: var(--heading);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    .post-body td {
+      border-top: 1px solid var(--border);
     }
 
     .post-body th:first-child,
@@ -186,62 +277,91 @@
       white-space: nowrap;
     }
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 20px 0 32px;
+    .post-body td:first-child {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* フッター */
+    .site-footer {
+      padding: 0 0 40px;
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
       text-align: center;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       body {
         font-size: 16px;
+        line-height: 1.9;
       }
 
-      header {
-        padding: 24px 0 16px;
+      .container {
+        padding: 0 14px;
+      }
+
+      .site-header {
+        padding: 36px 0 68px;
       }
 
       .site-title {
-        font-size: 1.35rem;
+        font-size: 1.6rem;
       }
 
       main {
-        padding: 20px 0 32px;
+        margin-top: -44px;
+        padding-bottom: 40px;
       }
 
       article {
-        padding: 20px 16px;
+        border-radius: 12px;
+        padding: 28px 20px;
+      }
+
+      article + article {
+        margin-top: 20px;
       }
 
       .post-title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+      }
+
+      .post-body h3 {
+        font-size: 1.1rem;
+        margin-top: 2.2em;
+      }
+
+      .post-body blockquote,
+      .post-body .did {
+        padding: 14px 16px;
       }
 
       .post-body table {
-        font-size: 0.85rem;
+        font-size: 0.84rem;
       }
 
       .post-body th,
       .post-body td {
-        padding: 6px;
+        padding: 8px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="container">
       <h1 class="site-title"><a href="./">無色入門</a></h1>
+      <p class="site-tagline">Mushoku Nyumon</p>
     </div>
   </header>
 
   <main>
     <div class="container">
       <article>
-        <h2 class="post-title">【初心者向け】AI(Claude)にお願いするだけでブログを1つ公開してみた話</h2>
         <time class="post-date" datetime="2026-09-28">2026年9月28日</time>
+        <h2 class="post-title">【初心者向け】AI(Claude)にお願いするだけでブログを1つ公開してみた話</h2>
         <div class="post-body">
           <h3>きっかけ</h3>
           <p>普段はライブドアブログを使っているのですが、「もし無料サービスが終了したら」という保険として、以前から別の場所にもブログを持っておきたいと思っていました。</p>
@@ -367,8 +487,8 @@
       </article>
 
       <article>
-        <h2 class="post-title">はじめての投稿</h2>
         <time class="post-date" datetime="2026-09-27">2026年9月27日</time>
+        <h2 class="post-title">はじめての投稿</h2>
         <div class="post-body">
           <p>ブログをはじめました。よろしくお願いします。</p>
         </div>
@@ -376,7 +496,7 @@
     </div>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="container">
       &copy; 2026 無色入門
     </div>
