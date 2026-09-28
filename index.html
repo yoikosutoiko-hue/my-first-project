@@ -12,6 +12,8 @@
       --muted: #777777;
       --accent: #4a7c59;
       --border: #e6e6e1;
+      --quote-bg: #f3f3ee;
+      --did-bg: #eef5f0;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -22,6 +24,8 @@
         --muted: #a0a0a0;
         --accent: #8cc49b;
         --border: #3a3a3a;
+        --quote-bg: #2e2e2e;
+        --did-bg: #263229;
       }
     }
 
@@ -87,8 +91,99 @@
       font-size: 0.85rem;
     }
 
+    article + article {
+      margin-top: 32px;
+    }
+
     .post-body p {
       margin: 0 0 1em;
+    }
+
+    .post-body h3 {
+      margin: 2em 0 0.8em;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      font-size: 1.15rem;
+      line-height: 1.5;
+    }
+
+    .post-body ul {
+      margin: 0 0 1em;
+      padding-left: 1.4em;
+    }
+
+    .post-body li {
+      margin-bottom: 0.4em;
+    }
+
+    .post-body strong {
+      font-weight: 700;
+    }
+
+    .post-body a {
+      color: var(--accent);
+    }
+
+    .post-body blockquote {
+      margin: 0 0 1em;
+      padding: 12px 16px;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .post-body blockquote p:last-child {
+      margin-bottom: 0;
+    }
+
+    .post-body .did {
+      margin: 0 0 1em;
+      padding: 12px 16px;
+      background: var(--did-bg);
+      border-radius: 6px;
+    }
+
+    .post-body .did-label {
+      display: block;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .post-body .note {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .table-wrap {
+      margin: 0 0 1em;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .post-body table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .post-body th,
+    .post-body td {
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .post-body th {
+      background: var(--did-bg);
+    }
+
+    .post-body th:first-child,
+    .post-body td:first-child {
+      text-align: center;
+      white-space: nowrap;
     }
 
     footer {
@@ -123,6 +218,15 @@
       .post-title {
         font-size: 1.2rem;
       }
+
+      .post-body table {
+        font-size: 0.85rem;
+      }
+
+      .post-body th,
+      .post-body td {
+        padding: 6px;
+      }
     }
   </style>
 </head>
@@ -135,6 +239,133 @@
 
   <main>
     <div class="container">
+      <article>
+        <h2 class="post-title">【初心者向け】AI(Claude)にお願いするだけでブログを1つ公開してみた話</h2>
+        <time class="post-date" datetime="2026-09-28">2026年9月28日</time>
+        <div class="post-body">
+          <h3>きっかけ</h3>
+          <p>普段はライブドアブログを使っているのですが、「もし無料サービスが終了したら」という保険として、以前から別の場所にもブログを持っておきたいと思っていました。</p>
+          <p>そんな時に「Claude Code」というAIツールの存在を知りました。難しいプログラミング知識がなくても、日本語で「こういうページを作って」とお願いするだけで、AIがコードを書いて、実際にインターネット上に公開までやってくれるというものです。</p>
+          <p>今回は実際にゼロから試してみた記録です。同じように「プログラミングは分からないけど興味はある」という方の参考になればと思います。</p>
+          <p>先に結論を言うと、<strong>私が自分の手でやったことは、ごくわずかな入力と「OK」「はい」と答えることだけ</strong>でした。細かい作業のほとんどはAIが代わりにやってくれます。</p>
+
+          <h3>準備したもの</h3>
+          <ul>
+            <li>Claudeのアカウント(有料プランで、AIが自分の代わりに作業してくれる「クラウドセッション」という機能が使えるもの)</li>
+            <li>GitHub(ギットハブ。プログラムのファイルを保存・共有できる無料サービス。Googleドライブのプログラム版のようなもの)のアカウント(今回の作業で新規作成しました)</li>
+          </ul>
+
+          <h3>全体の流れと、実際に私がやったこと</h3>
+          <p>以下の表にまとめます。</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ステップ</th>
+                  <th>内容</th>
+                  <th>私が実際にやったこと</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>GitHubアカウントを作る</td>
+                  <td>メールアドレスなどを入力して登録(最初の1回だけ)</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>GitHubとClaudeを連携する</td>
+                  <td>「連携していい?」と聞かれて「OK」と答えただけ</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>空の置き場所(リポジトリ)を1つ作る</td>
+                  <td>名前と公開・非公開の希望を伝えただけ</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Claudeに「ブログページを作って」とお願いする</td>
+                  <td>やりたいことを1〜2文、日本語で伝えただけ</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>できたものを本番に反映する</td>
+                  <td>「OK」と答えただけ</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>インターネット上に公開する</td>
+                  <td>選択肢から「これでやってみる」を選んだだけ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>細かい手順は下で説明しますが、私が自分で考えて操作した部分はほとんどない、というのが実感です。</p>
+
+          <h3>ステップ1: GitHubアカウントを作る</h3>
+          <p><a href="https://github.com/" target="_blank" rel="noopener">github.com</a> にアクセスし、「Sign up(サインアップ、新規登録のこと)」からメールアドレス・パスワード・ユーザー名を登録するだけです。クレジットカードなどは不要で、完全無料で使えます。</p>
+          <div class="did">
+            <span class="did-label">→ 私がやったこと</span>
+            これだけは自分の情報(メールアドレス・パスワードなど)なので、自分で入力しました。所要時間5分程度です。ここだけは他の人には代わってもらえない、唯一「自分の作業」と言える部分でした。
+          </div>
+
+          <h3>ステップ2: GitHubとClaudeを連携する</h3>
+          <p>Claude Code(<a href="https://claude.ai/code" target="_blank" rel="noopener">claude.ai/code</a>)の画面で「リポジトリを選択」→「GitHubを接続」を選ぶと、GitHubのログイン画面が出ます。ログインして「Authorize(オーソライズ、"許可する"の意味)」を押すと連携完了です。</p>
+          <p>続けて「Claude GitHub App(アプリ)」というものをインストールします。これは「Claudeがどのリポジトリを操作していいか」を決める設定です。今回は「All repositories(オール・リポジトリーズ、"すべてのリポジトリ"の意味)」を選びました。</p>
+          <div class="did">
+            <span class="did-label">→ 私がやったこと</span>
+            「この画面が出たけど、押していい?」とAIに確認し、「OK」と答えただけです。画面の意味も一つ一つAIが説明してくれたので、判断に迷いませんでした。
+          </div>
+
+          <h3>ステップ3: 空のリポジトリ(置き場所)を作る</h3>
+          <p>GitHubの「New repository(ニュー・リポジトリー、"新しい保管庫"の意味)」ボタンから、名前を付けて空の置き場所を作ります。</p>
+          <blockquote>
+            <p><strong>リポジトリとは:</strong> プロジェクトのファイル一式と、変更履歴(いつ・何を変えたかの記録)を保存しておく「保管庫」のようなものです。</p>
+          </blockquote>
+          <div class="did">
+            <span class="did-label">→ 私がやったこと</span>
+            「名前は何にする?」「公開する?しない?」と聞かれたので、名前を1つ考えて、非公開(Private、プライベート)を選んだだけです。実際の作成ボタンを押す操作はAIが行いました。
+          </div>
+
+          <h3>ステップ4: Claudeにブログページ作成をお願いする</h3>
+          <p>Claude Codeの画面で、作ったリポジトリを選択し、こんな感じで日本語でお願いするだけです。</p>
+          <blockquote>
+            <p>「シンプルなブログのHTML(エイチティーエムエル。Webページの中身を作るための言語)サイトを1ページ作ってください。タイトルは「〇〇」、記事タイトルは「はじめての投稿」、本文は「〇〇」にしてください。デザインはシンプルで読みやすく、スマホでも見やすいレイアウトにしてください。」</p>
+          </blockquote>
+          <p>数十秒〜数分で、Claudeが実際にコード(プログラムの中身のこと。今回はindex.htmlというファイル)を書き上げ、GitHub上に保存してくれます。</p>
+          <div class="did">
+            <span class="did-label">→ 私がやったこと</span>
+            やりたいことを日本語の文章1つで伝えただけです。タイトルや文章の中身は事前に考えましたが、コードそのものは一切書いていません。
+          </div>
+
+          <h3>ステップ5: 本番に反映する(プルリクエストのマージ)</h3>
+          <p>Claudeが作った内容は、最初は「下書き」のような状態(ブランチ:本番とは別に作業できる枝分かれのスペースのこと)に置かれます。それを正式な状態(main〈メイン〉ブランチ、つまり本番用のブランチ)に取り込むために、「プルリクエスト(プル・リクエスト、"取り込んでください"という提案のこと)」を作り、GitHubの画面で緑色の「Merge pull request(マージ・プル・リクエスト、"提案を取り込む"の意味)」ボタンを押しました。</p>
+          <div class="did">
+            <span class="did-label">→ 私がやったこと</span>
+            「見張っておく?」と聞かれたので「大丈夫です」と答え、「本番に取り込んでいい?」という趣旨の確認に「OK」と答えただけです。ボタンを実際に押す操作はAIが行いました。
+          </div>
+          <p class="note"><strong>補足:</strong> 慣れてきたら、Claudeに「mainブランチに直接コミット(コミット:変更内容を記録すること)して」とお願いするだけで、この手順を省略することもできます(実際に後から試しました)。</p>
+
+          <h3>ステップ6: インターネット上に公開する(GitHub Pages)</h3>
+          <p>最後に、GitHubの「Settings(セッティングス、設定のこと) → Pages(ページズ)」という設定画面で、公開するブランチ(main)を選んで保存するだけです。</p>
+          <p>これだけで、専用URL(ユーアールエル。インターネット上の住所のようなもの)でページが公開されます。</p>
+          <p class="note">※ 無料プランの場合、Private(非公開)のリポジトリのままだとこの機能が使えないため、公開しても問題ない内容であればリポジトリをPublic(パブリック、"公開"の意味)に変更する必要があります。</p>
+          <div class="did">
+            <span class="did-label">→ 私がやったこと</span>
+            「非公開のままか、公開にするか」という選択肢を示されたので、公開する方を選びました。加えて、公開設定を変える際にGitHubから届く「本人確認のメールコード」だけは、安全のしくみ上どうしても自分で入力する必要がありました(この部分はセキュリティ上、AIには代行させられない仕組みになっています)。それ以外の設定変更の操作はAIが行いました。
+          </div>
+
+          <h3>やってみた感想</h3>
+          <ul>
+            <li>VSCode(ブイエスコード。プログラムを書くための専用ソフト)などのエディタを開いて、ファイルを保存して、アップロードし直す…という一連の作業が一切不要でした。日本語でお願いするだけで完結します。</li>
+            <li>振り返ってみると、自分で実際に手を動かしたのは「アカウント登録の入力」と「本人確認コードの入力」、あとは「OK」「はい」と答えることだけでした。</li>
+            <li>修正したい時も「タイトルを〇〇に変えて」と伝えるだけで、Claudeが該当箇所を直してくれます。</li>
+          </ul>
+          <p>プログラミング未経験でも、思ったよりずっと簡単に「自分のWebページを公開する」という体験ができました。次は、実際に運用しているブログの引っ越しにも挑戦してみたいと思います。</p>
+          <p class="note"><strong>一点補足です:</strong> 今回はAIが画面の操作(ボタンを押すなど)も代わりにやってくれる環境で試しました。使う環境によっては、画面のボタン操作だけはご自身でクリックする形になる場合もありますが、それでも「何を書くか」「コードをどう作るか」といった難しい部分はAIに任せられる点は変わりません。</p>
+        </div>
+      </article>
+
       <article>
         <h2 class="post-title">はじめての投稿</h2>
         <time class="post-date" datetime="2026-09-27">2026年9月27日</time>
