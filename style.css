@@ -144,6 +144,14 @@ article + article {
   line-height: 1.6;
 }
 
+.post-body h3 {
+  margin: 1.8em 0 0.8em;
+  color: var(--heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
 .post-body h2:first-child {
   margin-top: 0;
 }
@@ -159,7 +167,8 @@ article + article {
   background: var(--accent);
 }
 
-.post-body ul {
+.post-body ul,
+.post-body ol {
   margin: 0 0 1.2em;
   padding-left: 1.3em;
 }
@@ -268,6 +277,13 @@ article + article {
 .post-body td:first-child {
   text-align: center;
   white-space: nowrap;
+}
+
+.post-body table.compare th:first-child,
+.post-body table.compare td:first-child {
+  width: 30%;
+  text-align: left;
+  white-space: normal;
 }
 
 .post-body td:first-child {
